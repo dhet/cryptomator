@@ -1,0 +1,20 @@
+name: Tag Dispatch
+
+on:
+  push:
+    tags: "*"
+
+jobs:
+  dispatch:
+    name: Emit repository_dispatch event
+    runs-on: ubuntu-latest
+    steps:
+    - name: Trigger repository_dispatch
+      uses: defold/repository-dispatch@1.1.4
+      with: 
+        repo: dhet/cryptomator
+        token: ${{ secrets.TOKEN }}
+        user: john.smith@acme.com
+        action: my-action
+      
+
